@@ -25,6 +25,14 @@ Para não consumir a _API_ sem limites, alguns cuidados foram implementados
 
 ![](limits.png)
 
+## O que é gerado
+
+Ao executar o projeto, serão criados diretório(s) para cada moeda informada em _coins_ e gerados arquivos .json nos
+diretórios recém criados. Também é gerado um arquivo .checkpoint apenas para armazenar a última data solicitada à _API_
+do Mercado BitCoin.
+
+![](files.png)
+
 ## Observações finais
 
 Este projeto foi criado exclusivamente para fins didáticos!
