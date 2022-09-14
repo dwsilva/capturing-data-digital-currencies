@@ -1,7 +1,8 @@
 import datetime
 from abc import ABC
 from abc import abstractmethod
-from apis import DaySummaryApi
+# from apis import DaySummaryApi
+from capturing_data_digital_currencies.apis import DaySummaryApi
 
 
 class DataIngestor(ABC):
@@ -32,8 +33,8 @@ class DataIngestor(ABC):
         else:
             return self.default_start_date
 
-    def _update_checkpoint(self, valor):
-        self._checkpoint = valor
+    def _update_checkpoint(self, value):
+        self._checkpoint = value
         self._write_checkpoint()
 
     @abstractmethod
