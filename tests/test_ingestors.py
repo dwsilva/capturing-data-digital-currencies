@@ -1,11 +1,9 @@
 import datetime
 import pytest
-from capturing_data_digital_currencies.ingestors import DataIngestor
-from capturing_data_digital_currencies.writers import DataWriter
+from capturing_data_digital_currencies.mercado_bitcoin.ingestors import DataIngestor
+from capturing_data_digital_currencies.mercado_bitcoin.writers import DataWriter
 from unittest.mock import patch, mock_open
 
-
-# from ingestors import DataIngestor
 
 @pytest.fixture
 @patch("ingestors.DataIngestor.__abstractmethod__", set())
@@ -30,13 +28,13 @@ class TestIngestors:
         assert actual == expected
 
     @patch("builtins.open", new_callable=mock_open, read_data="2022-06-15")
-    def test_load_checkpoint_existing_checkpoint(self, mock, data_ingestor_fixture):
+    def test_load_checkpoint_existing_checkpoint(self, data_ingestor_fixture):
         actual = data_ingestor_fixture._load_checkpoint()
         expected = datetime.datetime(2022, 6, 15)
         assert actual == expected
 
     @patch("ingestors.DataIngestor._write_checkpoint", return_value=None)
-    def test_update_checkpoint_checkpoint_updated(self, mock, data_ingestor_fixture):
+    def test_update_checkpoint_checkpoint_updated(self, data_ingestor_fixture):
         data_ingestor_fixture._update_checkpoint(value=datetime.datetime(2022, 6, 1))
         actual = data_ingestor_fixture._checkpoint
         expected = datetime.datetime(2022, 6, 1)

@@ -22,8 +22,8 @@ class MercadoBitcoinApi(ABC):
     @on_exception(expo, ratelimit.exception.RateLimitException, max_tries=10)
     @ratelimit.limits(calls=29, period=30)
     @on_exception(expo, requests.exceptions.HTTPError, max_tries=10)
-    def get_data(self, **Kwargs) -> dict:
-        endpoint = self._get_endpoint(**Kwargs)
+    def get_data(self, **kwargs) -> dict:
+        endpoint = self._get_endpoint(**kwargs)
         logger.info(f'Getting data from endpoint {endpoint}')
         response = requests.get(endpoint)
         response.raise_for_status()
